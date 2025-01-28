@@ -1,4 +1,4 @@
-# ytdl-cloudinary-uploader
+# ytdl
 
 A Node.js package to download YouTube videos and upload them to Cloudinary.
 
