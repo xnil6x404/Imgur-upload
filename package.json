@@ -1,6 +1,6 @@
 {
   "name": "xnil6x-ytdl",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A package to download YouTube videos and upload them to Cloudinary.",
   "main": "index.js",
   "scripts": {
