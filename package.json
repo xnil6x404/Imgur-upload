@@ -1,16 +1,16 @@
 {
   "name": "xnil6x-ytdl",
-  "version": "1.0.3",
-  "description": "A package to download YouTube videos and upload them to Cloudinary.",
+  "version": "1.0.4",
+  "description": "A Node.js package to download YouTube videos and upload them to Cloudinary.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"No test specified\" && exit 1"
   },
   "keywords": ["youtube", "cloudinary", "ytdl", "video-upload"],
-  "author": "xnil",
+  "author": "Your Name",
   "license": "MIT",
   "dependencies": {
-        "@distube/ytdl-core": "^4.15.9",
+    "@distube/ytdl-core": "^4.15.9",
     "cloudinary": "^2.5.1"
   }
 }
