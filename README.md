@@ -10,4 +10,4 @@ const uploadYoutubeVideo = require('ytdl-cloudinary-uploader');
 (async () => {
     const result = await uploadYoutubeVideo('https://www.youtube.com/watch?v=example');
     console.log(result);
-})();```
+})();
