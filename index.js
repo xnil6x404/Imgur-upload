@@ -1,12 +1,12 @@
 const axios = require('axios');
 const CLIENT_ID = 'd2a85ecb5a65923';
 
-async function uploadFromUrl(imageUrl) {
+async function uploadFromUrl(url) {
   try {
     const response = await axios.post(
       'https://api.imgur.com/3/upload',
       new URLSearchParams({
-        image: imageUrl,
+        image: url,
         type: 'url',
       }),
       {
@@ -28,3 +28,5 @@ async function uploadFromUrl(imageUrl) {
     throw error;
   }
 }
+
+module.exports = { uploadFromUrl };
