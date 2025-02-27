@@ -1,16 +1,20 @@
 {
-  "name": "xnil6x-ytdl",
-  "version": "1.0.4",
-  "description": "A Node.js package to download YouTube videos and upload them to Cloudinary.",
+  "name": "imgur-upload",
+  "version": "1.0.0",
+  "description": "A simple utility to upload images to Imgur from a URL",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"No test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["youtube", "cloudinary", "ytdl", "video-upload"],
-  "author": "Your Name",
+  "keywords": [
+    "imgur",
+    "upload",
+    "image",
+    "url"
+  ],
+  "author": "xnil",
   "license": "MIT",
   "dependencies": {
-    "@distube/ytdl-core": "^4.15.9",
-    "cloudinary": "^2.5.1"
+    "axios": "^1.0.0"
   }
 }
