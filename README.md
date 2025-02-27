@@ -1,11 +1,11 @@
 # imgur upload
 
-A Node.js package to imgur-upload upload
+A Node.js package to imgur upload
 
 ## Installation
 
 ```bash
-const { uploadFromUrl } = require('imgur-upload');
+const { uploadFromUrl } = require('xnil-imgur-upload');
 
 uploadFromUrl('https://i.imgur.com/NQMSlzX.jpeg')
   .then(link => console.log('Uploaded to Imgur:', link))
