@@ -1,49 +1,40 @@
-const ytdl = require('@distube/ytdl-core');
-const cloudinary = require('cloudinary').v2;
-const fs = require('fs');
-const path = require('path');
+const axios = require('axios'); // Make sure axios is installed
 
-cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME || 'dixnwu365',
-    api_key: process.env.API_KEY || '537711188667524',
-    api_secret: process.env.API_SECRET || 'OX-FdFO0kQgaEEhVkz4Xag0F6Qo'
-});
+// Your Imgur Client ID (replace with your actual client ID)
+const CLIENT_ID = 'd2a85ecb5a65923';
 
-async function uploadYoutubeVideo(videoUrl) {
-    if (!videoUrl) {
-        throw new Error('Please provide a YouTube video URL.');
+async function uploadFromUrl(imageUrl) {
+  try {
+    const response = await axios.post(
+      'https://api.imgur.com/3/upload',
+      new URLSearchParams({
+        image: imageUrl,
+        type: 'url',
+      }),
+      {
+        headers: {
+          'Authorization': `Client-ID ${CLIENT_ID}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }
+    );
+
+    // Check if the response is successful  
+    if (response.status === 200) {  
+      console.log('Upload successful:', response.data.data.link); // Get the Imgur link  
+      return response.data.data.link;  
+    } else {  
+      throw new Error(`Error uploading to Imgur: ${response.statusText}`);  
     }
-
-    try {
-        const basicInfo = await ytdl.getBasicInfo(videoUrl);
-        const title = basicInfo.videoDetails.title;
-
-        const tempFilePath = path.join(__dirname, `${title.replace(/[^a-zA-Z0-9]/g, '_')}.mp4`);
-
-        const videoStream = ytdl(videoUrl, { quality: 'highest', filter: 'audioandvideo' });
-        const writeStream = fs.createWriteStream(tempFilePath);
-
-        videoStream.pipe(writeStream);
-
-        await new Promise((resolve, reject) => {
-            writeStream.on('finish', resolve);
-            writeStream.on('error', reject);
-        });
-
-        const uploadResponse = await cloudinary.uploader.upload(tempFilePath, {
-            resource_type: 'video',
-            public_id: title.replace(/[^a-zA-Z0-9]/g, '_')
-        });
-
-        fs.unlinkSync(tempFilePath);
-
-        return {
-            title: title,
-            url: uploadResponse.secure_url
-        };
-    } catch (error) {
-        throw new Error('An error occurred while processing the video.');
-    }
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
 }
 
-module.exports = uploadYoutubeVideo;
+// Example usage
+uploadFromUrl('https://i.imgur.com/NQMSlzX.jpeg')
+  .then(link => console.log('Uploaded to Imgur:', link))
+  .catch(err => console.error('Upload failed:', err));
+
+module.exports = { uploadFromUrl };  // Export the function for use in other projects
