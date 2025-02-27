@@ -1,6 +1,4 @@
-const axios = require('axios'); // Make sure axios is installed
-
-// Your Imgur Client ID (replace with your actual client ID)
+const axios = require('axios');
 const CLIENT_ID = 'd2a85ecb5a65923';
 
 async function uploadFromUrl(imageUrl) {
@@ -18,8 +16,7 @@ async function uploadFromUrl(imageUrl) {
         },
       }
     );
-
-    // Check if the response is successful  
+  
     if (response.status === 200) {  
       console.log('Upload successful:', response.data.data.link); // Get the Imgur link  
       return response.data.data.link;  
@@ -31,10 +28,3 @@ async function uploadFromUrl(imageUrl) {
     throw error;
   }
 }
-
-// Example usage
-uploadFromUrl('https://i.imgur.com/NQMSlzX.jpeg')
-  .then(link => console.log('Uploaded to Imgur:', link))
-  .catch(err => console.error('Upload failed:', err));
-
-module.exports = { uploadFromUrl };  // Export the function for use in other projects
