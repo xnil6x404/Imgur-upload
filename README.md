@@ -1,13 +1,12 @@
-# ytdl
+# imgur upload
 
-A Node.js package to download YouTube videos and upload them to Cloudinary.
+A Node.js package to imgur-upload upload
 
 ## Installation
 
 ```bash
-const uploadYoutubeVideo = require('xnil6x-ytdl');
+const { uploadFromUrl } = require('imgur-upload');
 
-(async () => {
-    const result = await uploadYoutubeVideo('https://www.youtube.com/watch?v=example');
-    console.log(result);
-})();
+uploadFromUrl('https://i.imgur.com/NQMSlzX.jpeg')
+  .then(link => console.log('Uploaded to Imgur:', link))
+  .catch(err => console.error('Upload failed:', err));
